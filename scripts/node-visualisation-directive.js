@@ -82,9 +82,9 @@
 
                         var color = d3.scale.category20c();
 
-                        var treemap = d3.layout.treemap()
+                        var treemap = d3.layout.partition() //treemap
                             .size([width, height])
-                            .sticky(true)
+                //            .sticky(true)
                             .value(function(d) {
                             return d.size;
                         });
@@ -118,7 +118,8 @@
                             return d.children ? color(d.name) : null;
                         })
                             .text(function(d) {
-                            return d.children ? null : d.name;
+                                return d.name;
+//                            return d.children ? null : d.name;
                         });
 
                         d3.selectAll("input").on("change", function change() {
