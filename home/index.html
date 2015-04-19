@@ -37,19 +37,19 @@
                              <h3>Select file of trace data to analyse</h3>
 
                             <div class="row form-group"> 
-                            <span class="col-sm-3">
+                            <span class="col-sm-4">
                                 <label for="importFile">Trace file</label>
                                 <file-reader id="importFile" name="importFile" class="form-control" on-change="readFile()" text="analysis.result" />
                             </span>
-                            <span class="col-sm-3">
+                            <span class="col-sm-4">
                             <label for="threshold">Threshold</label>
                             <input type="text" id="threshold" ng-model="analysis.threshold"></input>
                             </span>
-                            <span class="col-sm-3">
-                            <label for="threshold">Reduction Level</label>
-                            <input type="text" id="reduction" ng-model="analysis.reduction"></input>
-                            </span>
-                            <span class="col-sm-3">
+                            <!--<span class="col-sm-3">-->
+                            <!--<label for="threshold">Reduction Level</label>-->
+                            <!--<input type="text" id="reduction" ng-model="analysis.reduction"></input>-->
+                            <!--</span>-->
+                            <span class="col-sm-4">
                             <br/>  
                             <button type="button" class="btn btn-primary" id="parse-button" ng-click="analysis.getStackData()">Parse</button>
                             </span>
