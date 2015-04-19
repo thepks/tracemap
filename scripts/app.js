@@ -37,7 +37,7 @@
     app.controller('analysisController', ["MessageLogService", "TraceAnalysisService", "BroadcastService", function(MessageLogService, TraceAnalysisService, BroadcastService) {
         
         this.result ='';
-        this.threshold = 20000;
+        this.threshold = 0;
         this.reduction = 1000;
         this.tree = [];
         this.new_result = '';
