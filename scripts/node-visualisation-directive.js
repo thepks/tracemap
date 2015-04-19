@@ -61,8 +61,8 @@
                     var data = BroadcastService.retrieve('gp-display-nodes');
                     var contentAt = attrs.instance;
                     var width, height;
-                    height = attrs.height;
-                    width = attrs.width;
+                    height = parseInt(attrs.height);
+                    width = parseInt(attrs.width);
                     var type = attrs.type;
 
 
