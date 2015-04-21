@@ -66,7 +66,7 @@
                     var type = attrs.type;
 
 
-                    if (type === 'treemap') {
+                    if (type === 'partition') {
 
                         var newtree = flattenTree(data);
 
@@ -82,12 +82,16 @@
 
                         var color = d3.scale.category20c();
 
-                        var treemap = d3.layout.partition() //treemap
-                            .size([width, height])
-                //            .sticky(true)
-                            .value(function(d) {
+
+
+                        var partition = d3.layout.partition() //treemap
+                        .size([width, height])
+                        //            .sticky(true)
+                        .value(function(d) {
                             return d.size;
                         });
+
+
 
                         var div = d3.select("#gpOverview" + contentAt).append("div")
                             .style("position", "relative")
@@ -96,10 +100,29 @@
                             .style("left", margin.left + "px")
                             .style("top", margin.top + "px");
 
+                        var divtip = div.append("div")
+                            .attr("class", "tooltip")
+                            .style("opacity", 0);
+
+
                         var node = div.datum(newtree[0]).selectAll(".node")
-                            .data(treemap.nodes)
+                            .data(partition.nodes)
                             .enter().append("div")
                             .attr("class", "node")
+                            .on("mouseover", function(d) {
+
+                            divtip.transition()
+                                .duration(200)
+                                .style("opacity", .9);
+                            divtip.html(d.name)
+                                .style("left", d3.event.pageX + "px")
+                                .style("top", this.offsetTop + "px");
+                        })
+                            .on("mouseout", function(d) {
+                            divtip.transition()
+                                .duration(500)
+                                .style("opacity", 0);
+                        })
                             .call(function() {
                             this.style("left", function(d) {
                                 return d.x + "px";
@@ -118,8 +141,8 @@
                             return d.children ? color(d.name) : null;
                         })
                             .text(function(d) {
-                                return d.name;
-//                            return d.children ? null : d.name;
+                            return d.name;
+                            //                            return d.children ? null : d.name;
                         });
 
                         d3.selectAll("input").on("change", function change() {

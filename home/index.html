@@ -38,16 +38,16 @@
 
                             <div class="row form-group"> 
                             <span class="col-sm-3">
-                                <label for="importFile">Trace file</label>
+                                <label for="importFile"  >Trace file</label>
                                 <file-reader id="importFile" name="importFile" class="form-control" on-change="readFile()" text="analysis.result" />
                             </span>
                             <span class="col-sm-3">
-                            <label for="threshold">Threshold</label>
-                            <input type="text" id="threshold" ng-model="analysis.threshold"></input>
+                            <label for="threshold" >Threshold</label>
+                            <input type="text" id="threshold" ng-model="analysis.threshold" class="form-control" ></input>
                             </span>
                             <span class="col-sm-3">
-                            <label for="threshold">Reduction Level</label>
-                            <input type="text" id="reduction" ng-model="analysis.reduction"></input>
+                            <label for="threshold" >Reduction Level</label>
+                            <input type="text" id="reduction" ng-model="analysis.reduction" class="form-control" ></input>
                             </span>
                             <span class="col-sm-3">
                             <br/>  
@@ -63,7 +63,7 @@
                 <p ng-bind="analysis.new_result"></p>
             </section>
             <section>
-                <node-visualisation type="treemap" instance="analysis" height="1200" width="1300"></node-visualisation>
+                <node-visualisation type="partition" instance="analysis" height="1200" width="1300"></node-visualisation>
             </section>
         </main>
     </body>
