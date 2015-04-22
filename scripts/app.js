@@ -39,24 +39,60 @@
         this.result ='';
         this.threshold = 0;
         this.reduction = 1000;
+    this.measurement = '';
+    this.measurements = [];
         this.tree = [];
-        this.new_result = '';
+        this.ready = false;
         
-        this.hasData = function() {
-            return (this.new_result.length > 1);
-        };
-        
-        this.getData = function() {
-            return this.new_result;
-        };
-        
+
+    this.get_measurements = function() {
+        return this.measurements;
+    };
+
+    this.is_ready = function() {
+         if (this.measurement.length > 0) {
+        this.ready = true;
+         }
+         return this.ready;
+    };
+
+
+    this.is_file_read = function() {
+         return this.result.length > 0;
+    };
+
+    this.is_parsed = function() {
+        return this.measurements.length > 0;
+    };
+       
+
+
+    this.display_result = function() {
+
+        var v = this.measurement.split (/ /);
+
+
+        BroadcastService.broadcast("gp-measurement",v[0]);
+        BroadcastService.broadcast("gp-display-nodes",this.tree);
+
+    };
+
         this.getStackData = function() {
+        var measures;
+        this.measurements = [];
+        this.ready = false;
             this.tree = TraceAnalysisService.parse(this.result, this.threshold, this.reduction);
 //            console.log(JSON.stringify(this.tree));
 //            this.new_result = JSON.stringify(this.tree);
             
             console.log("Tree got");
-            BroadcastService.broadcast("gp-display-nodes",this.tree);
+            
+        measures = this.tree.length;
+        
+        for (var i=0; i<measures; i++) {
+        this.measurements.push(i + " - " + this.tree[i].name);
+        }
+    
             
 //             var data_rows = [];
 //             var new_rows = [];

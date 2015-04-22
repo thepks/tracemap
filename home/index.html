@@ -41,29 +41,33 @@
                                 <label for="importFile"  >Trace file</label>
                                 <file-reader id="importFile" name="importFile" class="form-control" on-change="readFile()" text="analysis.result" />
                             </span>
-                            <span class="col-sm-3">
+                            <span class="col-sm-2">
+                            <br/>  
+                            <button type="button" class="btn btn-primary" id="parse-button" ng-click="analysis.getStackData()" ng-show="analysis.is_file_read()">Parse</button>
+                            <button type="button" class="btn btn-primary" id="display-button" ng-click="analysis.display_result()" ng-show="analysis.is_ready()">Display</button>
+                            </span>
+                <span class="col-sm-3" ng-show="analysis.is_parsed()">
+                <label for="measurement">Measurement</label>
+                                <select id="measurement" class="form-control" ng-model="analysis.measurement" 
+                                ng-options="n for n in analysis.get_measurements()">
+                                    </select>
+                </span>
+                            <span class="col-sm-2">
                             <label for="threshold" >Threshold</label>
                             <input type="text" id="threshold" ng-model="analysis.threshold" class="form-control" ></input>
                             </span>
-                            <span class="col-sm-3">
+                            <span class="col-sm-2">
                             <label for="threshold" >Reduction Level</label>
                             <input type="text" id="reduction" ng-model="analysis.reduction" class="form-control" ></input>
-                            </span>
-                            <span class="col-sm-3">
-                            <br/>  
-                            <button type="button" class="btn btn-primary" id="parse-button" ng-click="analysis.getStackData()">Parse</button>
                             </span>
                             </div>
                         </div>
                     </section>
                 </form>
             </section>
-            <section ng-show="analysis.hasData()">
-                <p>Parsed!</p>
-                <p ng-bind="analysis.new_result"></p>
-            </section>
+ 
             <section>
-                <node-visualisation type="partition" instance="analysis" height="1200" width="1300"></node-visualisation>
+                <node-visualisation type="partition" instance="analysis" height="1200" width="1400"></node-visualisation>
             </section>
         </main>
     </body>

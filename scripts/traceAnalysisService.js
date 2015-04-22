@@ -100,7 +100,7 @@
                         call_obj.true_net = call_obj.net;
 
                         /* push objects to the stack */
-            if (call_obj.net > 0) {
+            if (call_obj.net > 0 || call_obj.gross > 0) {
                             call_list_stack.push(call_obj);
             }
                     }

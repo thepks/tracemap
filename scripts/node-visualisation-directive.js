@@ -56,8 +56,10 @@
             templateNamespace: 'svg',
             link: function(scope, element, attrs) {
 
+
                 scope.$on('gp-display-nodes', function() {
 
+                var measure = parseInt( BroadcastService.retrieve('gp-measurement'));        
                     var data = BroadcastService.retrieve('gp-display-nodes');
                     var contentAt = attrs.instance;
                     var width, height;
@@ -105,7 +107,7 @@
                             .style("opacity", 0);
 
 
-                        var node = div.datum(newtree[0]).selectAll(".node")
+                        var node = div.datum(newtree[measure]).selectAll(".node")
                             .data(partition.nodes)
                             .enter().append("div")
                             .attr("class", "node")
